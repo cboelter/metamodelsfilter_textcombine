@@ -53,15 +53,18 @@ class TableMetaModelFilterSetting_TextCombine extends TableMetaModelHelper
 		$arrIds = deserialize($strValue);
 		$arrNames = array();
 
-		foreach($arrIds as $id) {
-			$objAttribute = $objMetaModel->getAttributeById($id);
-			if ($objAttribute)
-			{
-				$arrNames[] =  $objMetaModel->getTableName() .'_' . $objAttribute->getColName();
+		if(count($arrIds) > 0) {
+			foreach($arrIds as $id) {
+				$objAttribute = $objMetaModel->getAttributeById($id);
+				if ($objAttribute)
+				{
+					$arrNames[] =  $objMetaModel->getTableName() .'_' . $objAttribute->getColName();
+				}
 			}
+
+			$strValue = serialize($arrNames);
 		}
 
-		$strValue = serialize($arrNames);
 		return $strValue;
 	}
 
@@ -85,18 +88,21 @@ class TableMetaModelFilterSetting_TextCombine extends TableMetaModelHelper
 		$arrNames = deserialize($strValue);
 		$arrIds = array();
 
-		foreach($arrNames as $name) {
-			$strName = str_replace($objMetaModel->getTableName() . '_', '', $name);
+		if(count($arrNames) > 0) {
+			foreach($arrNames as $name) {
+				$strName = str_replace($objMetaModel->getTableName() . '_', '', $name);
 
-			$objAttribute = $objMetaModel->getAttribute($strName);
+				$objAttribute = $objMetaModel->getAttribute($strName);
 
-			if ($objAttribute)
-			{
-				$arrIds[] = $objAttribute->get('id');
+				if ($objAttribute)
+				{
+					$arrIds[] = $objAttribute->get('id');
+				}
 			}
+
+			$strValue = serialize($arrIds);
 		}
 
-		$strValue = serialize($arrIds);
 		return $strValue;
 	}
 }

@@ -82,16 +82,18 @@ class MetaModelFilterSettingTextCombine extends MetaModelFilterSetting
 				}
 			}
 
-			$objQuery = Database::getInstance()->query(sprintf(
-				'SELECT id FROM %s WHERE %s',
-				$this->getMetaModel()->getTableName(),
-				'(' . implode(' OR ', $arrQuery) . ')'
+			if(count($arrQuery) > 0) {
+				$objQuery = Database::getInstance()->query(sprintf(
+					'SELECT id FROM %s WHERE %s',
+					$this->getMetaModel()->getTableName(),
+					'(' . implode(' OR ', $arrQuery) . ')'
 				));
 
-			$arrIds = $objQuery->fetchEach('id');
+				$arrIds = $objQuery->fetchEach('id');
 
-			$objFilter->addFilterRule(new MetaModelFilterRuleStaticIdList($arrIds));
-			return;
+				$objFilter->addFilterRule(new MetaModelFilterRuleStaticIdList($arrIds));
+				return;
+			}
 		}
 
 		$objFilter->addFilterRule(new MetaModelFilterRuleStaticIdList(NULL));
