@@ -30,7 +30,7 @@
  * @subpackage FilterTextCombine
  * @author     Christopher Bölter <c.boelter@cogizz.de>
  */
-class TableMetaModelFilterSetting_TextCombine extends Backend
+class TableMetaModelFilterSetting_TextCombine extends TableMetaModelHelper
 {
 	/**
 	 * translates an id to a generated alias {@see TableMetaModelFilterSetting::getAttributeNames()}

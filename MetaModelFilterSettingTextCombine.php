@@ -19,7 +19,7 @@
  * Filter "text combine" for FE-filtering, based on filters by the MetaModels team.
  *
  * @package	   MetaModels
- * @subpackage FrontendFilter
+ * @subpackage FilterTextCombine
  * @author     Christopher Bölter <c.boelter@cogizz.de>
  */
 class MetaModelFilterSettingTextCombine extends MetaModelFilterSetting
@@ -70,7 +70,7 @@ class MetaModelFilterSettingTextCombine extends MetaModelFilterSetting
 				break;
 		}
 
-		$arrQuery = '';
+		$arrQuery = array();
 
 		if ($strParamName && $strParamValue)
 		{
@@ -127,8 +127,6 @@ class MetaModelFilterSettingTextCombine extends MetaModelFilterSetting
 		{
 			return array();
 		}
-
-		$objAttribute = $this->getMetaModel()->getAttributeById($this->get('attr_id'));
 
 		$arrWidget = array(
 			'label'     => array(
