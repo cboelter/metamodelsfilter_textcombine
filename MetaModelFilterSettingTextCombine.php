@@ -29,10 +29,13 @@ class MetaModelFilterSettingTextCombine extends MetaModelFilterSetting
 	 */
 	protected function getParamName()
 	{
+
 		if ($this->get('urlparam'))
 		{
 			return $this->get('urlparam');
 		}
+
+		return 'textsearch_' . $this->get('id');
 
 	}
 
@@ -78,20 +81,19 @@ class MetaModelFilterSettingTextCombine extends MetaModelFilterSetting
 				$objAttribute = $objMetaModel->getAttributeById($intAttribute);
 
 				if($objAttribute) {
-					$arrQuery[] = sprintf('%s LIKE "%s"', $objAttribute->getColName(), str_replace(array('*', '?'), array('%', '_'), $strWhat));
+					$arrQuery[] = sprintf('%s LIKE ?', $objAttribute->getColName());
+					$arrParams[] = str_replace(array('*', '?'), array('%', '_'), $strWhat);
 				}
 			}
 
-			if(count($arrQuery) > 0) {
-				$objQuery = Database::getInstance()->query(sprintf(
+			if(count($arrQuery) && count($arrParams)) {
+				$strQuery = sprintf(
 					'SELECT id FROM %s WHERE %s',
 					$this->getMetaModel()->getTableName(),
 					'(' . implode(' OR ', $arrQuery) . ')'
-				));
+				);
 
-				$arrIds = $objQuery->fetchEach('id');
-
-				$objFilter->addFilterRule(new MetaModelFilterRuleStaticIdList($arrIds));
+				$objFilter->addFilterRule(new MetaModelFilterRuleSimpleQuery($strQuery, $arrParams));
 				return;
 			}
 		}
