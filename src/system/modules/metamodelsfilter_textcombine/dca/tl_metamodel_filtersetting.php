@@ -46,9 +46,7 @@ $GLOBALS['TL_DCA']['tl_metamodel_filtersetting']['fields']['textcombine_attribut
 	'save_callback'           => array(array('TableMetaModelFilterSetting_TextCombine', 'arrNameToAttrId')),
 );
 
-/**
- * fields
- */
+
 $GLOBALS['TL_DCA']['tl_metamodel_filtersetting']['fields']['textcombine_operator'] = array
 (
 	'label'                   => &$GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['textcombine_operator'],

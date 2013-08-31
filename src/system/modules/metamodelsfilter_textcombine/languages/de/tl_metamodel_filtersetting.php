@@ -28,6 +28,7 @@ $GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['textsearch']   = array('Sucha
 $GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['textcombine_attributes'] = array('Suchfelder', 'Durchsuchbare Attribute.');
 $GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['textcombine_operator'] = array('Verknüpfung der Suchfelder', 'Art der Verknüpfung für die Suchfelder.');
 
+
 /**
  * references
  */

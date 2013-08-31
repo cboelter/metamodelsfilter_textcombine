@@ -22,6 +22,6 @@ $GLOBALS['METAMODELS']['filters']['textcombine'] = array
 (
 	'class' => 'MetaModelFilterSettingTextCombine',
 	'attr_filter' => array('text','longtext'),
-	'image' => 'system/modules/metamodelsfilter_text/html/filter_text.png',
+	'image' => 'system/modules/metamodelsfilter_textcombine/html/filter_text.png',
 	'info_callback' => array('TableMetaModelFilterSetting_TextCombine','infoCallback')
 );

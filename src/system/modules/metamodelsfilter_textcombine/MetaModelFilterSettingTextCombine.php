@@ -25,7 +25,8 @@
 class MetaModelFilterSettingTextCombine extends MetaModelFilterSetting
 {
 	/**
-	 * {@inheritdoc}
+	 * return the setted urlparam or generate one
+	 * @return mixed|string
 	 */
 	protected function getParamName()
 	{
@@ -40,7 +41,9 @@ class MetaModelFilterSettingTextCombine extends MetaModelFilterSetting
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * prepare the filter rule
+	 * @param IMetaModelFilter $objFilter
+	 * @param $arrFilterUrl
 	 */
 	public function prepareRules(IMetaModelFilter $objFilter, $arrFilterUrl)
 	{
@@ -103,7 +106,8 @@ class MetaModelFilterSettingTextCombine extends MetaModelFilterSetting
 
 
 	/**
-	 * {@inheritdoc}
+	 * return param name
+	 * @return array
 	 */
 	public function getParameters()
 	{
@@ -112,7 +116,8 @@ class MetaModelFilterSettingTextCombine extends MetaModelFilterSetting
 
 
 	/**
-	 * {@inheritdoc}
+	 * get the filter param name
+	 * @return array
 	 */
 	public function getParameterFilterNames()
 	{
@@ -121,8 +126,15 @@ class MetaModelFilterSettingTextCombine extends MetaModelFilterSetting
 		);
 	}
 
+
 	/**
-	 * {@inheritdoc}
+	 * generate the filter widget for the frontend
+	 *
+	 * @param array $arrIds
+	 * @param array $arrFilterUrl
+	 * @param array $arrJumpTo
+	 * @param MetaModelFrontendFilterOptions $objFrontendFilterOptions
+	 * @return array
 	 */
 	public function getParameterFilterWidgets($arrIds, $arrFilterUrl, $arrJumpTo, MetaModelFrontendFilterOptions $objFrontendFilterOptions)
 	{
@@ -151,6 +163,7 @@ class MetaModelFilterSettingTextCombine extends MetaModelFilterSetting
 		);
 	}
 
+
 	/**
 	 * Overrides the parent implementation to always return true, as this setting is always optional.
 	 *
@@ -160,6 +173,7 @@ class MetaModelFilterSettingTextCombine extends MetaModelFilterSetting
 	{
 		return true;
 	}
+
 
 	/**
 	 * Overrides the parent implementation to always return true, as this setting is always available for FE filtering.
