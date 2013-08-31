@@ -32,6 +32,9 @@
  */
 class TableMetaModelFilterSetting_TextCombine extends TableMetaModelHelper
 {
+
+	protected $objMetaModel = null;
+
 	/**
 	 * translates an id to a generated alias {@see TableMetaModelFilterSetting::getAttributeNames()}
 	 *
@@ -43,8 +46,7 @@ class TableMetaModelFilterSetting_TextCombine extends TableMetaModelHelper
 	 */
 	public function attrIdToName($strValue, $objDC)
 	{
-		$this->import("TableMetaModelFilterSetting");
-		$objMetaModel = $this->TableMetaModelFilterSetting->getMetaModel($objDC);
+		$objMetaModel = TableMetaModelFilterSetting::getInstance()->getMetaModel($objDC);
 
 		if (!$objMetaModel)
 		{
@@ -77,8 +79,7 @@ class TableMetaModelFilterSetting_TextCombine extends TableMetaModelHelper
 	 */
 	public function arrNameToAttrId($strValue, $objDC)
 	{
-		$this->import("TableMetaModelFilterSetting");
-		$objMetaModel = $this->TableMetaModelFilterSetting->getMetaModel($objDC);
+		$objMetaModel = TableMetaModelFilterSetting::getInstance()->getMetaModel($objDC);
 
 		if (!$objMetaModel)
 		{
@@ -104,5 +105,55 @@ class TableMetaModelFilterSetting_TextCombine extends TableMetaModelHelper
 		}
 
 		return $strValue;
+	}
+
+	/**
+	 * backend list display of fe-filter
+	 * @param array
+	 * @param string
+	 * @param object
+	 * @param string
+	 * @param string
+	 * @return string
+	 */
+	public function infoCallback($arrRow, $strLabel, $objDC, $imageAttribute, $strImage)
+	{
+		$objDatabase = Database::getInstance();
+		$this->objMetaModel = TableMetaModelFilterSetting::getInstance()->getMetaModel($objDC);
+		$objAttributes = $objDatabase->prepare("SELECT textcombine_attributes FROM tl_metamodel_filtersetting Where id = ?")->limit(1)->execute($arrRow['id']);
+
+		$arrAttributes = deserialize($objAttributes->textcombine_attributes);
+		$strAttrName = '';
+
+		if ($objAttributes->numRows > 0)
+		{
+			foreach($arrAttributes as $attribute) {
+				$objAttribute = $this->objMetaModel->getAttributeById($attribute);
+
+				if($objAttribute) {
+					$arrAttributeNames[] = $objAttribute->getName();
+				} else {
+					$arrAttributeNames[] = $attribute;
+				}
+			}
+
+			$strAttrName = implode(', ', $arrAttributeNames);
+		}
+
+		if (!empty($arrRow['comment']))
+		{
+			$arrRow['comment'] = sprintf($GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['typedesc']['_comment_'], $arrRow['comment']);
+		}
+
+		$strReturn = sprintf(
+			$GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['typedesc']['fefilter'],
+			'<a href="' . $this->addToUrl('act=edit&amp;id='.$arrRow['id']). '">' . $strImage . '</a>',
+			$strLabel,
+			$arrRow['comment'],
+			$strAttrName,
+			$arrRow['urlparam'] ? $arrRow['urlparam'] : 'textsearch_' . $arrRow['id']
+		);
+
+		return $strReturn;
 	}
 }

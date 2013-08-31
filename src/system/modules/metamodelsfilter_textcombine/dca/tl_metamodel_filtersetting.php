@@ -38,7 +38,7 @@ $GLOBALS['TL_DCA']['tl_metamodel_filtersetting']['fields']['textcombine_attribut
 		'submitOnChange'      => false,
 		'includeBlankOption'  => true,
 		'mandatory'           => true,
-		'tl_class'            => 'w50',
+		'tl_class'            => 'long',
 		'chosen'              => false,
 		'multiple'						=> true
 	),

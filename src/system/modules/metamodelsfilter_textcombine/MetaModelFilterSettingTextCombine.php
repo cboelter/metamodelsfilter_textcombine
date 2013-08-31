@@ -117,14 +117,14 @@ class MetaModelFilterSettingTextCombine extends MetaModelFilterSetting
 	public function getParameterFilterNames()
 	{
 		return array(
-			$this->getParamName() => 'Textcombine'
+			$this->getParamName() => ($this->get('label') ? $this->get('label') : 'Textcombine')
 		);
 	}
 
 	/**
 	 * {@inheritdoc}
 	 */
-	public function getParameterFilterWidgets($arrIds, $arrFilterUrl, $arrJumpTo, $blnAutoSubmit, $blnHideClearFilter)
+	public function getParameterFilterWidgets($arrIds, $arrFilterUrl, $arrJumpTo, MetaModelFrontendFilterOptions $objFrontendFilterOptions)
 	{
 		// if defined as static, return nothing as not to be manipulated via editors.
 		if (!$this->enableFEFilterWidget())
@@ -147,7 +147,7 @@ class MetaModelFilterSettingTextCombine extends MetaModelFilterSetting
 
 		return array
 		(
-			$this->getParamName() => $this->prepareFrontendFilterWidget($arrWidget, $arrFilterUrl, $arrJumpTo, $blnAutoSubmit)
+			$this->getParamName() => $this->prepareFrontendFilterWidget($arrWidget, $arrFilterUrl, $arrJumpTo, $objFrontendFilterOptions)
 		);
 	}
 
