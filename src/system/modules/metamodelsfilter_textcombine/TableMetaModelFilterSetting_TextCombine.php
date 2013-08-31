@@ -35,6 +35,7 @@ class TableMetaModelFilterSetting_TextCombine extends TableMetaModelHelper
 
 	protected $objMetaModel = null;
 
+	
 	/**
 	 * translates an id to a generated alias {@see TableMetaModelFilterSetting::getAttributeNames()}
 	 *
@@ -107,6 +108,7 @@ class TableMetaModelFilterSetting_TextCombine extends TableMetaModelHelper
 
 		return $strValue;
 	}
+
 
 	/**
 	 * backend list display of fe-filter
