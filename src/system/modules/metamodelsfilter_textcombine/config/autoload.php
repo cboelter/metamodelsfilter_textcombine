@@ -20,5 +20,6 @@
  */
 ClassLoader::addClasses(array
 (
-	'MetaModelFilterSettingTextCombine'         => 'system/modules/metamodelsfilter_text/MetaModelFilterSettingTextCombine.php',
+	'MetaModels\Filter\Setting\TextCombine' => 'system/modules/metamodelsfilter_textcombine/MetaModels/Filter/Setting/TextCombine.php',
+	'MetaModels\Dca\FilterTextCombine' => 'system/modules/metamodelsfilter_textcombine/MetaModels/Dca/FilterTextCombine.php',
 ));

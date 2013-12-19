@@ -15,6 +15,17 @@
  * @filesource
  */
 
+
+namespace MetaModels\Filter\Setting;
+
+use MetaModels\Filter\Filter;
+use MetaModels\Filter\IFilter;
+use MetaModels\Filter\Rules\Condition\ConditionAnd;
+use MetaModels\Filter\Rules\Condition\ConditionOr;
+use MetaModels\Filter\Rules\SearchAttribute;
+use MetaModels\Filter\Rules\StaticIdList;
+use MetaModels\FrontendIntegration\FrontendFilterOptions;
+
 /**
  * Filter "text combine" for FE-filtering, based on filters by the MetaModels team.
  *
@@ -22,7 +33,7 @@
  * @subpackage FilterTextCombine
  * @author     Christopher Bölter <c.boelter@cogizz.de>
  */
-class MetaModelFilterSettingTextCombine extends MetaModelFilterSetting
+class TextCombine extends Simple
 {
 	/**
 	 * return the setted urlparam or generate one
@@ -45,7 +56,7 @@ class MetaModelFilterSettingTextCombine extends MetaModelFilterSetting
 	 * @param IMetaModelFilter $objFilter
 	 * @param $arrFilterUrl
 	 */
-	public function prepareRules(IMetaModelFilter $objFilter, $arrFilterUrl)
+	public function prepareRules(IFilter $objFilter, $arrFilterUrl)
 	{
 		$objMetaModel = $this->getMetaModel();
 		$strParamName = $this->getParamName();
@@ -76,32 +87,31 @@ class MetaModelFilterSettingTextCombine extends MetaModelFilterSetting
 				break;
 		}
 
-		$arrQuery = array();
-
 		if ($strParamName && $strParamValue)
 		{
+			if ($this->get('textcombine_operator') == 'and') {
+				$objParentRule = new ConditionAnd();
+			}
+
+			if($this->get('textcombine_operator') == 'or') {
+				$objParentRule = new ConditionOr();
+			}
+
 			foreach($arrAttributes as $intAttribute) {
 				$objAttribute = $objMetaModel->getAttributeById($intAttribute);
 
 				if($objAttribute) {
-					$arrQuery[] = sprintf('%s LIKE ?', $objAttribute->getColName());
-					$arrParams[] = str_replace(array('*', '?'), array('%', '_'), $strWhat);
+					$objSubFilter = new Filter($objMetaModel);
+					$objSubFilter->addFilterRule(new SearchAttribute($objAttribute, $strWhat));
+					$objParentRule->addChild($objSubFilter);
 				}
 			}
 
-			if(count($arrQuery) && count($arrParams)) {
-				$strQuery = sprintf(
-					'SELECT id FROM %s WHERE %s',
-					$this->getMetaModel()->getTableName(),
-					'(' . implode(' OR ', $arrQuery) . ')'
-				);
-
-				$objFilter->addFilterRule(new MetaModelFilterRuleSimpleQuery($strQuery, $arrParams));
-				return;
-			}
+			$objFilter->addFilterRule($objParentRule);
+			return;
 		}
 
-		$objFilter->addFilterRule(new MetaModelFilterRuleStaticIdList(NULL));
+		$objFilter->addFilterRule(new StaticIdList(NULL));
 	}
 
 
@@ -136,7 +146,7 @@ class MetaModelFilterSettingTextCombine extends MetaModelFilterSetting
 	 * @param MetaModelFrontendFilterOptions $objFrontendFilterOptions
 	 * @return array
 	 */
-	public function getParameterFilterWidgets($arrIds, $arrFilterUrl, $arrJumpTo, MetaModelFrontendFilterOptions $objFrontendFilterOptions)
+	public function getParameterFilterWidgets($arrIds, $arrFilterUrl, $arrJumpTo, FrontendFilterOptions $objFrontendFilterOptions)
 	{
 		// if defined as static, return nothing as not to be manipulated via editors.
 		if (!$this->enableFEFilterWidget())

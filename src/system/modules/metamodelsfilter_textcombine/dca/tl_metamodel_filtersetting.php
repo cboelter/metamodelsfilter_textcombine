@@ -31,7 +31,7 @@ $GLOBALS['TL_DCA']['tl_metamodel_filtersetting']['fields']['textcombine_attribut
 	'label'                   => &$GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['textcombine_attributes'],
 	'exclude'                 => true,
 	'inputType'               => 'select',
-	'options_callback'        => array('TableMetaModelFilterSetting', 'getAttributeNames'),
+	'options_callback'        => array('MetaModels\Dca\Filter', 'getAttributeNames'),
 	'eval'                    => array(
 		'doNotSaveEmpty'      => true,
 		'alwaysSave'          => true,
@@ -40,10 +40,10 @@ $GLOBALS['TL_DCA']['tl_metamodel_filtersetting']['fields']['textcombine_attribut
 		'mandatory'           => true,
 		'tl_class'            => 'long',
 		'chosen'              => false,
-		'multiple'						=> true
+		'multiple'			  => true
 	),
-	'load_callback'           => array(array('TableMetaModelFilterSetting_TextCombine', 'attrIdToName')),
-	'save_callback'           => array(array('TableMetaModelFilterSetting_TextCombine', 'arrNameToAttrId')),
+	'load_callback'           => array(array('MetaModels\Dca\FilterTextCombine', 'attrIdToName')),
+	'save_callback'           => array(array('MetaModels\Dca\FilterTextCombine', 'arrNameToAttrId')),
 );
 
 
@@ -52,7 +52,7 @@ $GLOBALS['TL_DCA']['tl_metamodel_filtersetting']['fields']['textcombine_operator
 	'label'                   => &$GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['textcombine_operator'],
 	'exclude'                 => true,
 	'inputType'               => 'select',
-	'options'									=> array('OR','AND'),
+	'options'									=> array('or','and'),
 	'reference'								=> $GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['references'],
 	'eval'                    => array(
 		'doNotSaveEmpty'      => true,

@@ -15,6 +15,8 @@
  * @filesource
  */
 
+namespace MetaModels\Dca;
+
 /**
  * Filter "text combine" for FE-filtering, based on filters by the MetaModels team.
  *
@@ -30,12 +32,12 @@
  * @subpackage FilterTextCombine
  * @author     Christopher Bölter <c.boelter@cogizz.de>
  */
-class TableMetaModelFilterSetting_TextCombine extends TableMetaModelHelper
+class FilterTextCombine extends Helper
 {
 
 	protected $objMetaModel = null;
 
-	
+
 	/**
 	 * translates an id to a generated alias {@see TableMetaModelFilterSetting::getAttributeNames()}
 	 *
@@ -47,7 +49,7 @@ class TableMetaModelFilterSetting_TextCombine extends TableMetaModelHelper
 	 */
 	public function attrIdToName($strValue, $objDC)
 	{
-		$objMetaModel = TableMetaModelFilterSetting::getInstance()->getMetaModel($objDC);
+		$objMetaModel = Filter::getInstance()->getMetaModel($objDC);
 
 		if (!$objMetaModel)
 		{
@@ -81,7 +83,7 @@ class TableMetaModelFilterSetting_TextCombine extends TableMetaModelHelper
 	 */
 	public function arrNameToAttrId($strValue, $objDC)
 	{
-		$objMetaModel = TableMetaModelFilterSetting::getInstance()->getMetaModel($objDC);
+		$objMetaModel = Filter::getInstance()->getMetaModel($objDC);
 
 		if (!$objMetaModel)
 		{
@@ -89,7 +91,7 @@ class TableMetaModelFilterSetting_TextCombine extends TableMetaModelHelper
 		}
 
 		$arrNames = deserialize($strValue);
-		$arrIds = array();
+		$arrIds   = array();
 
 		if(count($arrNames) > 0) {
 			foreach($arrNames as $name) {
@@ -121,8 +123,8 @@ class TableMetaModelFilterSetting_TextCombine extends TableMetaModelHelper
 	 */
 	public function infoCallback($arrRow, $strLabel, $objDC, $imageAttribute, $strImage)
 	{
-		$objDatabase = Database::getInstance();
-		$this->objMetaModel = TableMetaModelFilterSetting::getInstance()->getMetaModel($objDC);
+		$objDatabase = \Database::getInstance();
+		$this->objMetaModel = Filter::getInstance()->getMetaModel($objDC);
 		$objAttributes = $objDatabase->prepare("SELECT textcombine_attributes FROM tl_metamodel_filtersetting Where id = ?")->limit(1)->execute($arrRow['id']);
 
 		$arrAttributes = deserialize($objAttributes->textcombine_attributes);

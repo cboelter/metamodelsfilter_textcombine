@@ -35,5 +35,5 @@ $GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['textcombine_operator'] = arra
 $GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['references']['exact']      = 'exakte Suche';
 $GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['references']['beginswith'] = 'beginnt mit Suchtext';
 $GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['references']['endswith']   = 'endet mit Suchtext';
-$GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['references']['OR']   = 'oder';
-$GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['references']['AND']   = 'und';
+$GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['references']['or']   = 'oder';
+$GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['references']['and']   = 'und';
