@@ -53,7 +53,7 @@ class TextCombine extends Simple
 
 	/**
 	 * prepare the filter rule
-	 * @param IMetaModelFilter $objFilter
+	 * @param Filter $objFilter
 	 * @param $arrFilterUrl
 	 */
 	public function prepareRules(IFilter $objFilter, $arrFilterUrl)
@@ -89,6 +89,7 @@ class TextCombine extends Simple
 
 		if ($strParamName && $strParamValue)
 		{
+			$objParentRule = null;
 			if ($this->get('textcombine_operator') == 'and') {
 				$objParentRule = new ConditionAnd();
 			}
@@ -143,7 +144,7 @@ class TextCombine extends Simple
 	 * @param array $arrIds
 	 * @param array $arrFilterUrl
 	 * @param array $arrJumpTo
-	 * @param MetaModelFrontendFilterOptions $objFrontendFilterOptions
+	 * @param FrontendFilterOptions $objFrontendFilterOptions
 	 * @return array
 	 */
 	public function getParameterFilterWidgets($arrIds, $arrFilterUrl, $arrJumpTo, FrontendFilterOptions $objFrontendFilterOptions)

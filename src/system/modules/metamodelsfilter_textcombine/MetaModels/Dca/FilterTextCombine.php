@@ -17,6 +17,8 @@
 
 namespace MetaModels\Dca;
 
+use DcGeneral\DC_General;
+
 /**
  * Filter "text combine" for FE-filtering, based on filters by the MetaModels team.
  *
@@ -43,11 +45,11 @@ class FilterTextCombine extends Helper
 	 *
 	 * @param string        $strValue the id to translate.
 	 *
-	 * @param DataContainer $objDC    the data container calling.
+	 * @param DC_General $objDC    the data container calling.
 	 *
 	 * @return string
 	 */
-	public function attrIdToName($strValue, $objDC)
+	public function attrIdToName($strValue,DC_General $objDC)
 	{
 		$objMetaModel = Filter::getInstance()->getMetaModel($objDC);
 
@@ -132,6 +134,8 @@ class FilterTextCombine extends Helper
 
 		if ($objAttributes->numRows > 0)
 		{
+			$arrAttributeNames = array();
+
 			foreach($arrAttributes as $attribute) {
 				$objAttribute = $this->objMetaModel->getAttributeById($attribute);
 
