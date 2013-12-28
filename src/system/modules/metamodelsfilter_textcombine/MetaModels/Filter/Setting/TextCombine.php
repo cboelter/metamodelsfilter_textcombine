@@ -35,6 +35,7 @@ use MetaModels\FrontendIntegration\FrontendFilterOptions;
  */
 class TextCombine extends Simple
 {
+
 	/**
 	 * return the setted urlparam or generate one
 	 * @return mixed|string
@@ -89,7 +90,6 @@ class TextCombine extends Simple
 
 		if ($strParamName && $strParamValue)
 		{
-			$objParentRule = null;
 			if ($this->get('textcombine_operator') == 'and') {
 				$objParentRule = new ConditionAnd();
 			}
@@ -115,7 +115,6 @@ class TextCombine extends Simple
 		$objFilter->addFilterRule(new StaticIdList(NULL));
 	}
 
-
 	/**
 	 * return param name
 	 * @return array
@@ -124,7 +123,6 @@ class TextCombine extends Simple
 	{
 		return ($strParamName = $this->getParamName()) ? array($strParamName) : array();
 	}
-
 
 	/**
 	 * get the filter param name
@@ -136,7 +134,6 @@ class TextCombine extends Simple
 			$this->getParamName() => ($this->get('label') ? $this->get('label') : 'Textcombine')
 		);
 	}
-
 
 	/**
 	 * generate the filter widget for the frontend
@@ -156,15 +153,15 @@ class TextCombine extends Simple
 		}
 
 		$arrWidget = array(
-			'label'     => array(
+			'label' => array(
 				// TODO: make this multilingual.
 				($this->get('label') ? $this->get('label') : 'textcombine'),
 				'GET: ' . $this->getParamName()
 			),
-			'inputType'    => 'text',
+			'inputType' => 'text',
 			'eval' => array(
-				'urlparam'           => $this->getParamName(),
-				'template'           => $this->get('template'),
+				'urlparam' => $this->getParamName(),
+				'template' => $this->get('template'),
 			)
 		);
 

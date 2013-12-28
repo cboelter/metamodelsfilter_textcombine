@@ -17,4 +17,5 @@
 CREATE TABLE `tl_metamodel_filtersetting` (
   `textcombine_attributes` blob NOT NULL,
   `textcombine_operator` varchar(3) NOT NULL default '',
+  `textsearch` varchar(32) NOT NULL default '',
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
