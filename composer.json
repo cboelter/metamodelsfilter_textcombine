@@ -1,5 +1,5 @@
 {
-	"name":"cogizz/ metamodelsfilter_textcombine",
+	"name":"cogizz/metamodelsfilter_textcombine",
 	"description":"MetaModels textcombine filter",
 	"keywords":["contao", "metamodels", "filter", "textcombine"],
 	"type":"contao-module",
