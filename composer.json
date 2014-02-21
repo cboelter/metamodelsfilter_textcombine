@@ -1,0 +1,38 @@
+{
+	"name":"cogizz/ metamodelsfilter_textcombine",
+	"description":"MetaModels textcombine filter",
+	"keywords":["contao", "metamodels", "filter", "textcombine"],
+	"type":"contao-module",
+	"license":"LGPL-3.0+",
+	"authors":[
+		{
+			"name":"Christopher Bölter",
+			"email":"info@cogizz.de",
+			"homepage":"http://www.cogizz.de",
+			"role":"Developer"
+		}
+	],
+	"support":{
+		"issues":"https://github.com/cogizz/metamodelsfilter_textcombine/issues",
+		"source":"https://github.com/cogizz/metamodelsfilter_textcombine"
+	},
+	"require":{
+		"php":">=5.3",
+		"contao/core": ">=3.1,<4.0",
+		"contao-community-alliance/composer-installer": "*",
+		"metamodels/core":"~1"
+	},
+	"conflict": {
+		"contao/core": "3.0.*"
+	},
+	"autoload": {
+		"classmap": ["src"]
+	},
+	"extra":{
+		"contao": {
+			"symlinks":{
+				"src/system/modules/metamodelsfilter_textcombine":"system/modules/metamodelsfilter_textcombine"
+			}
+		}
+	}
+}
