@@ -25,6 +25,7 @@ use MetaModels\Filter\Rules\Condition\ConditionOr;
 use MetaModels\Filter\Rules\SearchAttribute;
 use MetaModels\Filter\Rules\StaticIdList;
 use MetaModels\FrontendIntegration\FrontendFilterOptions;
+use MetaModels\Filter\Setting\Simple;
 
 /**
  * Filter "text combine" for FE-filtering, based on filters by the MetaModels team.
