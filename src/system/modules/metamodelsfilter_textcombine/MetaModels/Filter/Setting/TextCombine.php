@@ -166,6 +166,8 @@ class TextCombine extends Simple
 			)
 		);
 
+		$GLOBALS['MM_FILTER_PARAMS'][] = $this->getParamName();
+
 		return array
 		(
 			$this->getParamName() => $this->prepareFrontendFilterWidget($arrWidget, $arrFilterUrl, $arrJumpTo, $objFrontendFilterOptions)
