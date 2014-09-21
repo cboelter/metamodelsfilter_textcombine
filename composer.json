@@ -18,20 +18,27 @@
 	},
 	"require":{
 		"php":">=5.3",
-		"contao/core": ">=3.1,<4.0",
-		"contao-community-alliance/composer-installer": "*",
-		"metamodels/core":"~1"
+		"contao/core": ">=2.11,<4.0",
+		"contao-community-alliance/composer-plugin": "*",
+		"metamodels/core":"~2.0.0"
+	},
+	"require-dev": {
+		"metamodels/php-coding-standard":"dev-master",
+		"cyberspectrum/contao-toolbox": "dev-master",
+		"phpunit/phpunit": ">=3.7.10,<4-dev"
 	},
 	"conflict": {
 		"contao/core": "3.0.*"
 	},
 	"autoload": {
-		"classmap": ["src"]
+		"psr-0": {
+			"MetaModels": "src/system/modules/metamodelsfilter_textcombine"
+		}
 	},
 	"extra":{
 		"contao": {
 			"symlinks":{
-				"src/system/modules/metamodelsfilter_textcombine":"system/modules/metamodelsfilter_textcombine"
+				"src/system/modules/metamodelsfilter_textcombine": "system/modules/metamodelsfilter_textcombine"
 			}
 		}
 	}
