@@ -40,6 +40,11 @@
 			"symlinks":{
 				"src/system/modules/metamodelsfilter_textcombine": "system/modules/metamodelsfilter_textcombine"
 			}
+		},
+		"branch-alias": {
+			"dev-tng": "2.0.x-dev"
 		}
-	}
+	},
+	"minimum-stability": "dev",
+	"prefer-stable": true
 }
