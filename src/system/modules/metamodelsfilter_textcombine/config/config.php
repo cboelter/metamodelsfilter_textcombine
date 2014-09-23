@@ -10,7 +10,7 @@
  * @package    MetaModels
  * @subpackage FilterTextCombine
  * @author     Christopher Bölter <c.boelter@cogizz.de>
- * @copyright  Cogizz - web solutions
+ * @copyright  cogizz - digital communications
  * @license    LGPL.
  * @filesource
  */
@@ -18,15 +18,15 @@
 /**
  * Frontend filter
  */
-
 $GLOBALS['METAMODELS']['filters']['textcombine']['class'] = 'MetaModels\Filter\Setting\TextCombine';
 $GLOBALS['METAMODELS']['filters']['textcombine']['image'] = 'system/modules/metamodelsfilter_textcombine/html/filter_text.png';
-$GLOBALS['METAMODELS']['filters']['textcombine']['info_callback'] = array('MetaModels\Dca\FilterTextCombine', 'infoCallback');
 $GLOBALS['METAMODELS']['filters']['textcombine']['attr_filter'][] = 'text';
 $GLOBALS['METAMODELS']['filters']['textcombine']['attr_filter'][] = 'longtext';
 $GLOBALS['METAMODELS']['filters']['textcombine']['attr_filter'][] = 'translatedlongtext';
 $GLOBALS['METAMODELS']['filters']['textcombine']['attr_filter'][] = 'translatedtext';
 
-// non composerized Contao 2.X autoload support.
-$GLOBALS['MM_AUTOLOAD'][] = dirname(__DIR__);
-$GLOBALS['MM_AUTOLOAD'][] = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'deprecated';
+/**
+ * Register events
+ */
+$GLOBALS['TL_EVENTS'][\ContaoCommunityAlliance\Contao\EventDispatcher\Event\CreateEventDispatcherEvent::NAME][] =
+	'MetaModels\DcGeneral\Events\SubscriberTextCombine::registerEvents';

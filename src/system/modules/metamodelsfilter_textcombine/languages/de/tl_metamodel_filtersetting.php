@@ -10,7 +10,7 @@
  * @package    MetaModels
  * @subpackage FilterTextCombine
  * @author     Christopher Bölter <c.boelter@cogizz.de>
- * @copyright  Cogizz - web solutions
+ * @copyright  cogizz - digital communications
  * @license    LGPL.
  * @filesource
  */
@@ -19,6 +19,7 @@
  * filter types
  */
 $GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['typenames']['textcombine']     = 'Kombinierter-Textfilter';
+$GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['typedesc']['textcombine']  = '%s <strong>%s</strong> %s <br /> für Attribute <em>%s</em>';
 
 
 /**
@@ -32,8 +33,8 @@ $GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['textcombine_operator'] = arra
 /**
  * references
  */
-$GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['references']['exact']      = 'exakte Suche';
-$GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['references']['beginswith'] = 'beginnt mit Suchtext';
-$GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['references']['endswith']   = 'endet mit Suchtext';
-$GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['references']['or']   = 'oder';
-$GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['references']['and']   = 'und';
+$GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['references']['exact']      	= 'exakte Suche';
+$GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['references']['beginswith'] 	= 'beginnt mit Suchtext';
+$GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['references']['endswith']   	= 'endet mit Suchtext';
+$GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['references']['or']   		= 'oder';
+$GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['references']['and']   		= 'und';

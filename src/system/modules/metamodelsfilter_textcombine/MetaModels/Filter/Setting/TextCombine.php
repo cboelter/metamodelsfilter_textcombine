@@ -10,7 +10,7 @@
  * @package    MetaModels
  * @subpackage FilterTextCombine
  * @author     Christopher Bölter <c.boelter@cogizz.de>
- * @copyright  Cogizz - web solutions
+ * @copyright  cogizz - digital communications
  * @license    LGPL.
  * @filesource
  */

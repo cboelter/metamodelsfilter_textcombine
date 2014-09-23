@@ -10,7 +10,7 @@
  * @package    MetaModels
  * @subpackage FilterTextCombine
  * @author     Christopher Bölter <c.boelter@cogizz.de>
- * @copyright  Cogizz - web solutions
+ * @copyright  cogizz - digital communications
  * @license    LGPL.
  * @filesource
  */
@@ -31,7 +31,6 @@ $GLOBALS['TL_DCA']['tl_metamodel_filtersetting']['fields']['textcombine_attribut
 	'label'                   	=> &$GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['textcombine_attributes'],
 	'exclude'                 	=> true,
 	'inputType'               	=> 'select',
-	'options_callback'        	=> array('MetaModels\Dca\Filter', 'getAttributeNames'),
 	'eval'                    	=> array(
 		'doNotSaveEmpty'      	=> true,
 		'alwaysSave'          	=> true,
@@ -42,8 +41,6 @@ $GLOBALS['TL_DCA']['tl_metamodel_filtersetting']['fields']['textcombine_attribut
 		'chosen'              	=> false,
 		'multiple'			  	=> true
 	),
-	'load_callback'           	=> array(array('MetaModels\Dca\FilterTextCombine', 'attrIdToName')),
-	'save_callback'           	=> array(array('MetaModels\Dca\FilterTextCombine', 'arrNameToAttrId')),
 );
 
 
@@ -68,10 +65,13 @@ $GLOBALS['TL_DCA']['tl_metamodel_filtersetting']['fields']['textcombine_operator
 
 $GLOBALS['TL_DCA']['tl_metamodel_filtersetting']['fields']['textsearch'] = array
 (
-	'label' => &$GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['textsearch'],
-	'exclude' => true,
-	'inputType' => 'select',
-	'options' => array('exact','beginswith','endswith'),
-	'reference' => $GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['references'],
-	'eval' => array('tl_class'=>'w50', 'includeBlankOption'=>true)
+	'label'						=> &$GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['textsearch'],
+	'exclude' 					=> true,
+	'inputType'					=> 'select',
+	'options' 					=> array('exact','beginswith','endswith'),
+	'reference' 				=> $GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['references'],
+	'eval' 						=> array(
+		'tl_class'				=>'w50',
+		'includeBlankOption'	=>true
+	)
 );
