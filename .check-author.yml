@@ -1,0 +1,8 @@
+ignore:
+#  Mini Model <minimodel@metamodel.me>
+
+exclude:
+  languages
+
+mapping:
+  Christopher Boelter <christopher@boelter.eu>: cboelter <christopher@boelter.eu>
