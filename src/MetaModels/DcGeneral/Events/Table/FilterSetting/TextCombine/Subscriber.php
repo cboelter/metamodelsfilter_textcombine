@@ -7,12 +7,11 @@
  *
  * PHP version 5
  *
- * @package     AttributeTags
- * @author      Christian Schiffler <c.schiffler@cyberspectrum.de>
- * @author      Stefan Heimes <stefan_heimes@hotmail.com>
- * @author      Christopher Boelter <christopher@boelter.eu>
- * @copyright   The MetaModels team.
- * @license     LGPL.
+ * @package    MetaModels
+ * @subpackage FilterTextCombine
+ * @author     Christopher Boelter <christopher@boelter.eu>
+ * @copyright  The MetaModels team.
+ * @license    LGPL.
  * @filesource
  */
 
@@ -25,10 +24,9 @@ use ContaoCommunityAlliance\DcGeneral\Contao\View\Contao2BackendView\IdSerialize
 use MetaModels\DcGeneral\Events\BaseSubscriber;
 
 /**
- * Handle events for tl_metamodel_attribute for tag attributes.
+ * Handle events for tl_metamodel_filtersetting for filtersettings.
  *
- * @package AttributeTags
- * @author  Christian Schiffler <c.schiffler@cyberspectrum.de>
+ * @package FilterTextCombine
  */
 class Subscriber extends BaseSubscriber
 {
@@ -36,22 +34,33 @@ class Subscriber extends BaseSubscriber
      * Boot the system in the backend.
      *
      * @return void
-     *
-     * @SuppressWarnings(PHPMD.Superglobals)
-     * @SuppressWarnings(PHPMD.CamelCaseVariableName)
      */
     protected function registerEventsInDispatcher()
     {
         $this
-            ->addListener(GetPropertyOptionsEvent::NAME,
-            array($this, 'getTableNames'))->addListener(DecodePropertyValueForWidgetEvent::NAME,
-            array($this, 'decodeValue'))->addListener(EncodePropertyValueFromWidgetEvent::NAME,
-            array($this, 'encodeValue'));
+            ->addListener(
+                GetPropertyOptionsEvent::NAME,
+                array($this, 'getTextCombineAttributes')
+            )->addListener(
+                DecodePropertyValueForWidgetEvent::NAME,
+                array($this, 'decodeValue')
+            )->addListener(
+                EncodePropertyValueFromWidgetEvent::NAME,
+                array($this, 'encodeValue')
+            );
     }
 
-    protected function getMetaModel($event)
+    /**
+     * Get the metamodel by the current filter.
+     *
+     * @param ModelInterface $model The current model.
+     *
+     * @return \MetaModels\IMetaModel
+     */
+    protected function getMetaModel($model)
     {
-        $filterSetting = $this->getServiceContainer()->getFilterFactory()->createCollection($event->getModel()->getProperty('fid'));
+        $filterSetting =
+            $this->getServiceContainer()->getFilterFactory()->createCollection($model->getProperty('fid'));
 
         return $filterSetting->getMetaModel();
     }
@@ -62,20 +71,20 @@ class Subscriber extends BaseSubscriber
      * @param GetPropertyOptionsEvent $event The event.
      *
      * @return void
-     *
-     * @SuppressWarnings(PHPMD.Superglobals)
-     * @SuppressWarnings(PHPMD.CamelCaseVariableName)
      */
-    public function getTableNames(GetPropertyOptionsEvent $event)
+    public function getTextCombineAttributes(GetPropertyOptionsEvent $event)
     {
 
-        if (($event->getEnvironment()->getDataDefinition()->getName() !== 'tl_metamodel_filtersetting') || ($event->getPropertyName() !== 'textcombine_attributes')) {
+        if (($event->getEnvironment()->getDataDefinition()->getName() !== 'tl_metamodel_filtersetting')
+            || ($event->getPropertyName() !== 'textcombine_attributes')
+        ) {
             return;
         }
 
-        $metaModel = $this->getMetaModel($event);
+        $metaModel = $this->getMetaModel($event->getModel());
 
-        $knownAttributeTypes = $this->getServiceContainer()->getFilterFactory()->getTypeFactory('textcombine')->getKnownAttributeTypes();
+        $knownAttributeTypes =
+            $this->getServiceContainer()->getFilterFactory()->getTypeFactory('textcombine')->getKnownAttributeTypes();
 
         $result = array();
 
@@ -101,11 +110,13 @@ class Subscriber extends BaseSubscriber
      */
     public function decodeValue(DecodePropertyValueForWidgetEvent $event)
     {
-        if (($event->getEnvironment()->getDataDefinition()->getName() !== 'tl_metamodel_filtersetting') || ($event->getProperty() !== 'textcombine_attributes')) {
+        if (($event->getEnvironment()->getDataDefinition()->getName() !== 'tl_metamodel_filtersetting')
+            || ($event->getProperty() !== 'textcombine_attributes')
+        ) {
             return;
         }
 
-        $metaModel = $this->getMetaModel($event);
+        $metaModel = $this->getMetaModel($event->getModel());
         $values    = $event->getModel()->getProperty('textcombine_attributes');
 
         $attributes = array();
@@ -134,11 +145,13 @@ class Subscriber extends BaseSubscriber
      */
     public function encodeValue(EncodePropertyValueFromWidgetEvent $event)
     {
-        if (($event->getEnvironment()->getDataDefinition()->getName() !== 'tl_metamodel_filtersetting') || ($event->getProperty() !== 'textcombine_attributes')) {
+        if (($event->getEnvironment()->getDataDefinition()->getName() !== 'tl_metamodel_filtersetting')
+            || ($event->getProperty() !== 'textcombine_attributes')
+        ) {
             return;
         }
 
-        $metaModel = $this->getMetaModel($event);
+        $metaModel = $this->getMetaModel($event->getModel());
         $values    = $event->getValue();
 
         $attributes = array();

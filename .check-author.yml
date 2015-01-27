@@ -5,4 +5,7 @@ exclude:
   languages
 
 mapping:
-  Christopher Boelter <christopher@boelter.eu>: cboelter <christopher@boelter.eu>
+  "Christopher Boelter <christopher@boelter.eu>":
+    - "cogizz <c.boelter@cogizz.de>"
+    - "cboelter <christopher@boelter.eu>"
+    - "Christopher Boelter <c.boelter@cogizz.de>"

@@ -7,11 +7,11 @@
  *
  * PHP version 5
  *
- * @package MetaModels
- * @subpackage FilterText
- * @author Christopher Boelter <christopher@boelter.eu>
- * @copyright The MetaModels team.
- * @license LGPL.
+ * @package    MetaModels
+ * @subpackage FilterTextCombine
+ * @author     Christopher Boelter <christopher@boelter.eu>
+ * @copyright  The MetaModels team.
+ * @license    LGPL.
  * @filesource
  */
 

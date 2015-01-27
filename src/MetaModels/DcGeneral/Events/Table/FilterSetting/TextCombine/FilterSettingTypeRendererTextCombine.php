@@ -1,4 +1,19 @@
 <?php
+/**
+ * The MetaModels extension allows the creation of multiple collections of custom items,
+ * each with its own unique set of selectable attributes, with attribute extendability.
+ * The Front-End modules allow you to build powerful listing and filtering of the
+ * data in each collection.
+ *
+ * PHP version 5
+ *
+ * @package    MetaModels
+ * @subpackage FilterTextCombine
+ * @author     Christopher Boelter <christopher@boelter.eu>
+ * @copyright  The MetaModels team.
+ * @license    LGPL.
+ * @filesource
+ */
 
 namespace MetaModels\DcGeneral\Events\Table\FilterSetting\TextCombine;
 
@@ -84,19 +99,19 @@ class FilterSettingTypeRendererTextCombine extends FilterSettingTypeRenderer
         EnvironmentInterface $environment,
         ModelInterface $model
     ) {
-        $translator = $environment->getTranslator();
-        $metaModel  = $this->getMetaModel($model);
-        $attributes  = (array)$model->getProperty('textcombine_attributes');
+        $translator     = $environment->getTranslator();
+        $metaModel      = $this->getMetaModel($model);
+        $attributes     = (array) $model->getProperty('textcombine_attributes');
         $attributeNames = array();
 
-        if(!is_array($attributes)) {
-            return;
+        if (!is_array($attributes)) {
+            return array();
         }
 
         foreach ($attributes as $attribute) {
             $attribute = $metaModel->getAttributeById($attribute);
 
-            if(!$attribute) {
+            if (!$attribute) {
                 continue;
             }
 
@@ -128,7 +143,7 @@ class FilterSettingTypeRendererTextCombine extends FilterSettingTypeRenderer
     public function modelToLabelTextCombine(ModelToLabelEvent $event)
     {
         if (($event->getEnvironment()->getDataDefinition()->getName()
-                !== 'tl_metamodel_filtersetting')
+             !== 'tl_metamodel_filtersetting')
             || !in_array($event->getModel()->getProperty('type'), $this->getTypes())
         ) {
             return;

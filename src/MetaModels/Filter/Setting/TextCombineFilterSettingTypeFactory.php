@@ -8,7 +8,7 @@
  * PHP version 5
  *
  * @package    MetaModels
- * @subpackage FilterText
+ * @subpackage FilterTextCombine
  * @author     Christopher Boelter <christopher@boelter.eu>
  * @copyright  The MetaModels team.
  * @license    LGPL.
@@ -18,7 +18,7 @@
 namespace MetaModels\Filter\Setting;
 
 /**
- * Attribute type factory for text filter settings.
+ * Attribute type factory for textcombine filter settings.
  */
 class TextCombineFilterSettingTypeFactory extends AbstractFilterSettingTypeFactory
 {
@@ -36,11 +36,11 @@ class TextCombineFilterSettingTypeFactory extends AbstractFilterSettingTypeFacto
             ->allowAttributeTypes();
 
         foreach (array(
-                     'longtext',
-                     'text',
-                     'translatedtext',
-                     'translatedlongtext',
-                 ) as $attribute) {
+                'longtext',
+                'text',
+                'translatedtext',
+                'translatedlongtext',
+            ) as $attribute) {
             $this->addKnownAttributeType($attribute);
         }
     }
