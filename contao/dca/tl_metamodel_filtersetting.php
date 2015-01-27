@@ -20,7 +20,14 @@
  */
 $GLOBALS['TL_DCA']['tl_metamodel_filtersetting']['metapalettes']['textcombine extends default'] = array
 (
-	'+config' => array('textcombine_attributes', 'textcombine_operator', 'urlparam', 'label', 'textsearch', 'template'),
+	'+config' => array(
+		'textcombine_attributes',
+		'textcombine_operator',
+		'urlparam', 'label',
+		'label_as_placeholder',
+		'textsearch',
+		'template'
+	),
 );
 
 /**
@@ -73,5 +80,15 @@ $GLOBALS['TL_DCA']['tl_metamodel_filtersetting']['fields']['textsearch'] = array
 	'eval' 						=> array(
 		'tl_class'				=>'w50',
 		'includeBlankOption'	=>true
+	)
+);
+
+$GLOBALS['TL_DCA']['tl_metamodel_filtersetting']['fields']['label_as_placeholder'] = array
+(
+	'label'						=> &$GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['label_as_placeholder'],
+	'exclude' 					=> true,
+	'inputType'					=> 'checkbox',
+	'eval' 						=> array(
+		'tl_class'				=>'w50 m12',
 	)
 );

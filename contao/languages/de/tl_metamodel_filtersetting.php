@@ -28,6 +28,7 @@ $GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['typedesc']['textcombine']  = 
 $GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['textsearch']   = array('Suchart', 'Teiltext-Findung bei Textsuche.');
 $GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['textcombine_attributes'] = array('Suchfelder', 'Durchsuchbare Attribute.');
 $GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['textcombine_operator'] = array('Verknüpfung der Suchfelder', 'Art der Verknüpfung für die Suchfelder.');
+$GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['label_as_placeholder'] = array('Label als Platzhalter', 'Das Label als HTML5-Placeholder nutzen.');
 
 
 /**

@@ -154,11 +154,6 @@ class TextCombine extends Simple
 		}
 
 		$arrWidget = array(
-			'label' => array(
-				// TODO: make this multilingual.
-				($this->get('label') ? $this->get('label') : 'textcombine'),
-				'GET: ' . $this->getParamName()
-			),
 			'inputType' => 'text',
 			'eval' => array(
 				'urlparam' => $this->getParamName(),
@@ -166,7 +161,17 @@ class TextCombine extends Simple
 			)
 		);
 
-		$GLOBALS['MM_FILTER_PARAMS'][] = $this->getParamName();
+		if (!$this->get('label_as_placeholder')) {
+			$arrWidget['label'] = array(
+				// TODO: make this multilingual.
+				($this->get('label') ? $this->get('label') : 'textcombine'),
+				'GET: ' . $this->getParamName()
+			);
+		}
+
+		if ($this->get('label_as_placeholder')) {
+			$arrWidget['eval']['placeholder'] = ($this->get('label') ? $this->get('label') : 'textcombine');
+		}
 
 		return array
 		(

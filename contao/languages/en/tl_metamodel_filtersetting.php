@@ -26,7 +26,9 @@ $GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['typedesc']['textcombine']  = 
  * fields
  */
 $GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['textsearch'] = array('Search type', 'Finding text parts.');
-
+$GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['textcombine_attributes'] = array('Searchfields', 'Fields that will be included in the search.');
+$GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['textcombine_operator'] = array('Operator', 'The Operator between the searchfields.');
+$GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['label_as_placeholder'] = array('Label as placeholder', 'Using the label as HTML5-Placeholder.');
 
 /**
  * references
