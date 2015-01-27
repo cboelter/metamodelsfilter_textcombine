@@ -120,8 +120,8 @@ class Subscriber extends BaseSubscriber
         $values    = $event->getModel()->getProperty('textcombine_attributes');
 
         $attributes = array();
-        if (!($metaModel || $values)) {
-            return;
+        if (!$metaModel || !$values) {
+            $event->setValue($attributes);
         }
 
         foreach ($values as $value) {
