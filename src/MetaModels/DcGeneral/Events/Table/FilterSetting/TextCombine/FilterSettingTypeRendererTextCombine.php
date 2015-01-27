@@ -2,9 +2,11 @@
 
 namespace MetaModels\DcGeneral\Events\Table\FilterSetting\TextCombine;
 
+use ContaoCommunityAlliance\DcGeneral\Contao\View\Contao2BackendView\Event\ModelToLabelEvent;
 use ContaoCommunityAlliance\DcGeneral\Data\ModelInterface;
 use ContaoCommunityAlliance\DcGeneral\EnvironmentInterface;
 use MetaModels\DcGeneral\Events\Table\FilterSetting\FilterSettingTypeRenderer;
+use MetaModels\IMetaModelsServiceContainer;
 
 /**
  * Handles rendering of model from tl_metamodel_filtersetting.
@@ -12,13 +14,45 @@ use MetaModels\DcGeneral\Events\Table\FilterSetting\FilterSettingTypeRenderer;
 class FilterSettingTypeRendererTextCombine extends FilterSettingTypeRenderer
 {
     /**
+     * The MetaModel service container.
+     *
+     * @var IMetaModelsServiceContainer
+     */
+    private $serviceContainer;
+
+    /**
+     * Create a new instance.
+     *
+     * @param IMetaModelsServiceContainer $serviceContainer The MetaModel service container.
+     */
+    public function __construct(IMetaModelsServiceContainer $serviceContainer)
+    {
+        $this->serviceContainer = $serviceContainer;
+
+        $this->getServiceContainer()->getEventDispatcher()->addListener(
+            ModelToLabelEvent::NAME,
+            array($this, 'modelToLabelTextCombine')
+        );
+    }
+
+    /**
+     * Retrieve the service container.
+     *
+     * @return IMetaModelsServiceContainer
+     */
+    protected function getServiceContainer()
+    {
+        return $this->serviceContainer;
+    }
+
+    /**
      * Retrieve the types this renderer is valid for.
      *
      * @return array
      */
     protected function getTypes()
     {
-        return array('idlist', 'simplelookup', 'customsql', 'conditionand', 'conditionor');
+        return array('textcombine');
     }
 
     /**
@@ -30,13 +64,11 @@ class FilterSettingTypeRendererTextCombine extends FilterSettingTypeRenderer
      *
      * @return array
      */
-    protected function getLabelParameters(EnvironmentInterface $environment, ModelInterface $model)
+    protected function getLabelParametersTextCombine(EnvironmentInterface $environment, ModelInterface $model)
     {
         if ($model->getProperty('type') == 'textcombine') {
             return $this->getLabelParametersWithMultipleAttributeAndUrlParam($environment, $model);
         }
-
-        return $this->getLabelParametersNormal($environment, $model);
     }
 
     /**
@@ -84,5 +116,29 @@ class FilterSettingTypeRendererTextCombine extends FilterSettingTypeRenderer
             $attributeName,
             ($model->getProperty('urlparam') ? $model->getProperty('urlparam') : $attributeName)
         );
+    }
+
+    /**
+     * Render a filter setting into html.
+     *
+     * @param ModelToLabelEvent $event The event.
+     *
+     * @return void
+     */
+    public function modelToLabelTextCombine(ModelToLabelEvent $event)
+    {
+        if (($event->getEnvironment()->getDataDefinition()->getName()
+                !== 'tl_metamodel_filtersetting')
+            || !in_array($event->getModel()->getProperty('type'), $this->getTypes())
+        ) {
+            return;
+        }
+
+        $environment = $event->getEnvironment();
+        $model       = $event->getModel();
+
+        $event
+            ->setLabel($this->getLabelPattern($environment, $model))
+            ->setArgs($this->getLabelParametersTextCombine($environment, $model));
     }
 }
