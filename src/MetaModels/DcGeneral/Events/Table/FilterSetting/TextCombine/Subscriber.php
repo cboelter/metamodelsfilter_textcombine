@@ -122,6 +122,7 @@ class Subscriber extends BaseSubscriber
         $attributes = array();
         if (!$metaModel || !$values) {
             $event->setValue($attributes);
+            return;
         }
 
         foreach ($values as $value) {
@@ -157,6 +158,7 @@ class Subscriber extends BaseSubscriber
         $attributes = array();
         if (!$metaModel || $values) {
             $event->setValue($attributes);
+            return;
         }
 
         foreach ($values as $value) {
