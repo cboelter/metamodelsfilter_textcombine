@@ -1,5 +1,5 @@
 {
-  "name": "cogizz/metamodelsfilter_textcombine",
+  "name": "cboelter/metamodelsfilter_textcombine",
   "description": "MetaModels textcombine filter",
   "keywords": [
     "contao",
@@ -12,18 +12,18 @@
   "authors": [
     {
       "name": "Christopher Bölter",
-      "email": "info@cogizz.de",
-      "homepage": "http://www.cogizz.de",
+      "email": "github@boelter.eu",
+      "homepage": "https://boelter.eu",
       "role": "Developer"
     }
   ],
   "support": {
-    "issues": "https://github.com/cogizz/metamodelsfilter_textcombine/issues",
-    "source": "https://github.com/cogizz/metamodelsfilter_textcombine"
+    "issues": "https://github.com/cboelter/metamodelsfilter_textcombine/issues",
+    "source": "https://github.com/cboelter/metamodelsfilter_textcombine"
   },
   "require": {
     "php": ">=5.4",
-    "contao/core": ">=3.2,<3.6",
+    "contao/core": ">=3.5,<3.6",
     "contao-community-alliance/composer-plugin": "~2.0",
     "metamodels/core": "~2.0"
   },
@@ -48,7 +48,8 @@
       }
     },
     "branch-alias": {
-      "dev-tng": "2.0.x-dev"
+      "dev-master": "2.0.x-dev",
+      "dev-develop": "2.1.x-dev"
     }
   },
   "minimum-stability": "dev",
