@@ -4,6 +4,6 @@ This project is using the PHPCQ Build System
 For documentation visit:
 https://github.com/phpcq/phpcq
 -->
-<project name="MetaModels attribute text" default="build">
+<project name="MetaModels attribute textcombine" default="build">
   <import file="vendor/phpcq/phpcq/phpcq.main.xml"/>
 </project>
