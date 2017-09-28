@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The MetaModels extension allows the creation of multiple collections of custom items,
  * each with its own unique set of selectable attributes, with attribute extendability.
@@ -10,12 +11,10 @@
  * @package    MetaModels
  * @subpackage FilterTextCombine
  * @author     Christopher Boelter <christopher@boelter.eu>
- * @author     Christopher Bölter <c.boelter@cogizz.de>
- * @copyright  The MetaModels team.
- * @license    LGPL.
+ * @copyright  2017 Christopher Bölter
+ * @license    https://github.com/cboelter/metamodelsfilter_textcombine/blob/master/LICENSE LGPL-3.0
  * @filesource
  */
-
 
 namespace MetaModels\Filter\Setting;
 
@@ -31,8 +30,8 @@ use MetaModels\Filter\Setting\Simple;
 /**
  * Filter "text combine" for FE-filtering, based on filters by the MetaModels team.
  *
- * @package       MetaModels
- * @subpackage    FilterTextCombine
+ * @package    MetaModels
+ * @subpackage FilterTextCombine
  */
 class TextCombine extends Simple
 {
@@ -110,6 +109,7 @@ class TextCombine extends Simple
             }
 
             $objFilter->addFilterRule($objParentRule);
+
             return;
         }
 
@@ -160,25 +160,18 @@ class TextCombine extends Simple
         if (!$this->enableFEFilterWidget()) {
             return array();
         }
-
         $arrWidget = array(
-            'inputType' => 'text',
-            'eval'      => array(
-                'urlparam' => $this->getParamName(),
-                'template' => $this->get('template'),
-            )
-        );
-
-        if (!$this->get('label_as_placeholder')) {
-            $arrWidget['label'] = array(
+            'label'     => array(
                 ($this->get('label') ? $this->get('label') : 'textcombine'),
                 'GET: ' . $this->getParamName()
-            );
-        }
-
-        if ($this->get('label_as_placeholder')) {
-            $arrWidget['eval']['placeholder'] = ($this->get('label') ? $this->get('label') : 'textcombine');
-        }
+            ),
+            'inputType' => 'text',
+            'eval'      => array(
+                'urlparam'    => $this->getParamName(),
+                'template'    => $this->get('template'),
+                'placeholder' => $this->get('placeholder'),
+            )
+        );
 
         return array(
             $this->getParamName() => $this->prepareFrontendFilterWidget(

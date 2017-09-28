@@ -26,7 +26,7 @@ $GLOBALS['TL_DCA']['tl_metamodel_filtersetting']['metapalettes']['textcombine ex
         'textcombine_operator',
         'urlparam',
         'label',
-        'label_as_placeholder',
+        'placeholder',
         'textsearch',
         'template'
     ),
@@ -84,12 +84,10 @@ $GLOBALS['TL_DCA']['tl_metamodel_filtersetting']['fields']['textsearch'] = array
     )
 );
 
-$GLOBALS['TL_DCA']['tl_metamodel_filtersetting']['fields']['label_as_placeholder'] = array
+$GLOBALS['TL_DCA']['tl_metamodel_filtersetting']['fields']['placeholder'] = array
 (
-    'label'     => &$GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['label_as_placeholder'],
+    'label'     => &$GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['placeholder'],
     'exclude'   => true,
-    'inputType' => 'checkbox',
-    'eval'      => array(
-        'tl_class' => 'w50 m12',
-    )
+    'inputType' => 'text',
+    'eval'      => array('tl_class' => 'w50')
 );
