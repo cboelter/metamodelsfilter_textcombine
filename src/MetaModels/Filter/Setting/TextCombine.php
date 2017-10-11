@@ -160,6 +160,9 @@ class TextCombine extends Simple
         if (!$this->enableFEFilterWidget()) {
             return array();
         }
+
+        $this->addFilterParam($this->getParamName());
+
         $arrWidget = array(
             'label'     => array(
                 ($this->get('label') ? $this->get('label') : 'textcombine'),
@@ -201,5 +204,20 @@ class TextCombine extends Simple
     public function enableFEFilterWidget()
     {
         return true;
+    }
+
+    /**
+     * Add Param to global filter params array.
+     *
+     * @param string $strParam Name of filter param.
+     *
+     * @return void
+     *
+     * @SuppressWarnings(PHPMD.Superglobals)
+     * @SuppressWarnings(PHPMD.CamelCaseVariableName)
+     */
+    private function addFilterParam($strParam)
+    {
+        $GLOBALS['MM_FILTER_PARAMS'][] = $strParam;
     }
 }
